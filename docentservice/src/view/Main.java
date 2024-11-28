@@ -12,7 +12,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 
-
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -88,7 +87,7 @@ public class Main {
                     default:
                         System.out.println("Scelta errata. Scegliere un numero da 1 a 4 o 9");
                 }
-            }else if (entityChoice == 3) {
+            } else if (entityChoice == 3) {
                 System.out.println("Classe Corso");
                 System.out.println("***Menu***");
                 System.out.println("1. Crea un nuovo corso");
@@ -124,7 +123,6 @@ public class Main {
     }
 
 
-
     private static void deleteDiscente() {
         System.out.println("Elimina il discente con id: ");
         Scanner scanner = new Scanner(System.in);
@@ -133,14 +131,15 @@ public class Main {
         oDiscenteService.delete(id);
     }
 
-    private static  void readDiscente() {
+    private static void readDiscente() {
         System.out.println("ecco la lista dei discenti: ");
         DiscenteServices oDiscenteService = new DiscenteServices();
-        List<Discente> listaDiscenti= oDiscenteService.read();
+        List<Discente> listaDiscenti = oDiscenteService.read();
         int i = 0;
-        while(i<listaDiscenti.size()){
-            System.out.println(listaDiscenti.get(i).getid()+" "+listaDiscenti.get(i).getCognome()+" "+listaDiscenti.get(i).getNome()+" "+listaDiscenti.get(i).getMatricola()+" "+listaDiscenti.get(i).getDataNascita());
-            i++;}
+        while (i < listaDiscenti.size()) {
+            System.out.println(listaDiscenti.get(i).getid() + " " + listaDiscenti.get(i).getCognome() + " " + listaDiscenti.get(i).getNome() + " " + listaDiscenti.get(i).getMatricola() + " " + listaDiscenti.get(i).getDataNascita());
+            i++;
+        }
     }
 
     private static void updateDiscente() {
@@ -159,7 +158,7 @@ public class Main {
         LocalDate dataNascita = LocalDate.parse(dataNascitaInput, DateTimeFormatter.ISO_LOCAL_DATE);
 
         DiscenteServices oDiscenteServices = new DiscenteServices();
-        oDiscenteServices.update(id,nome,cognome,matricola,dataNascita);
+        oDiscenteServices.update(id, nome, cognome, matricola, dataNascita);
     }
 
     private static void createDiscente() {
@@ -176,12 +175,12 @@ public class Main {
         LocalDate dataNascita = LocalDate.parse(dataNascitaInput, DateTimeFormatter.ISO_LOCAL_DATE);
 
         DiscenteServices oDiscenteServices = new DiscenteServices();
-        oDiscenteServices.create(nome,cognome,matricola,dataNascita);
+        oDiscenteServices.create(nome, cognome, matricola, dataNascita);
 
 
     }
 
-    public static void createCorso(){
+    public static void createCorso() {
 
         System.out.println("inserisci il nome del corso");
         Scanner scanner = new Scanner(System.in);
@@ -191,7 +190,7 @@ public class Main {
         String dataInizioInput = scanner.nextLine(); // Specificare il formato della data
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
-        LocalDate data_inizio = LocalDate.parse(dataInizioInput,formatter);
+        LocalDate data_inizio = LocalDate.parse(dataInizioInput, formatter);
 
         System.out.println("inserisci la durata del corso");
         String durata = scanner.nextLine();
@@ -199,37 +198,37 @@ public class Main {
         System.out.println("ecco la lista dei docenti: ");
 
         DocenteService oDocenteService = new DocenteService();
-        List<Docente> listaDocenti= oDocenteService.readDocente();
+        List<Docente> listaDocenti = oDocenteService.readDocente();
         int i = 0;
-        while(i<listaDocenti.size()){
-            System.out.println(listaDocenti.get(i).getid()+" "+listaDocenti.get(i).getCognome()+" "+listaDocenti.get(i).getNome());
+        while (i < listaDocenti.size()) {
+            System.out.println(listaDocenti.get(i).getid() + " " + listaDocenti.get(i).getCognome() + " " + listaDocenti.get(i).getNome());
             i++;
         }
 
         System.out.println("scegli uno dei docenti: ");
-        int id =scanner.nextInt();
-        Docente docente = listaDocenti.get(id-2);
-
+        int id = scanner.nextInt();
+        Docente docente = listaDocenti.get(id - 2);
 
 
         CorsoService oCorsoService = new CorsoService();
-        oCorsoService.create(nome_corso,data_inizio,durata,docente);
+        oCorsoService.create(nome_corso, data_inizio, durata, docente);
 
     }
 
     private static void readDocente() {
         System.out.println("ecco la lista dei docenti: ");
         DocenteService oDocenteService = new DocenteService();
-        List<Docente> listaDocenti= oDocenteService.readDocente();
+        List<Docente> listaDocenti = oDocenteService.readDocente();
         int i = 0;
-        while(i<listaDocenti.size()){
-            System.out.println(listaDocenti.get(i).getid()+" "+listaDocenti.get(i).getCognome()+" "+listaDocenti.get(i).getNome());
-            i++;}
+        while (i < listaDocenti.size()) {
+            System.out.println(listaDocenti.get(i).getid() + " " + listaDocenti.get(i).getCognome() + " " + listaDocenti.get(i).getNome());
+            i++;
+        }
 
     }
 
 
-    private static void createDocente () {
+    private static void createDocente() {
         System.out.println("inserisci nome: ");
         Scanner scanner = new Scanner(System.in);
         String nome = scanner.next();

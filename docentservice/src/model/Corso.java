@@ -33,11 +33,11 @@ public class Corso {
         return nome_corso;
     }
 
-    public void setDatainizio(LocalDate data_inizio){
+    public void setDatainizio(LocalDate data_inizio) {
         this.data_inizio = data_inizio;
     }
 
-    public LocalDate getDataInizio(){
+    public LocalDate getDataInizio() {
         return data_inizio;
     }
 
@@ -49,11 +49,11 @@ public class Corso {
         return durata;
     }
 
-    public void setDocente(Docente docente){
+    public void setDocente(Docente docente) {
         this.docente = docente;
     }
 
-    public Docente getDocente(){
+    public Docente getDocente() {
         return docente;
     }
 

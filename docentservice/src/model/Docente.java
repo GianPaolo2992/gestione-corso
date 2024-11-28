@@ -5,6 +5,7 @@ public class Docente {
     private String nome;
     private String cognome;
     private int id;
+
     public void setNome(String nome) {
         this.nome = nome;
     }

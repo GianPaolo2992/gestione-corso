@@ -17,7 +17,7 @@ public class DocenteService {
     }
 
     //readDocente: Recupera tutti i docenti dal database usando docenteRepository.readDocente().
-    public List<Docente> readDocente(){
+    public List<Docente> readDocente() {
         return docenteRepository.readDocente();
     }
 

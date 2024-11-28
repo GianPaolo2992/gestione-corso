@@ -42,8 +42,7 @@ public class DocenteRepository {
     }
 
 
-
-    public ArrayList<Docente> readDocente () {
+    public ArrayList<Docente> readDocente() {
         ArrayList<Docente> listaDocenti = new ArrayList<>();
         try {
             Connection c = DbConnection.openConnection();
@@ -63,6 +62,7 @@ public class DocenteRepository {
         }
         return listaDocenti;
     }
+
     public void deleteDocente(Docente oDocente) {
 
         try {
@@ -83,19 +83,13 @@ public class DocenteRepository {
             Connection c = DbConnection.openConnection();
             System.out.println("Connessione riuscita!");
             Statement stmt = c.createStatement();
-            stmt.execute("UPDATE DocenteTest SET nome='"+oDocente.getNome()+"', cognome='"+oDocente.getCognome()+"' WHERE id ="  + oDocente.getid());
+            stmt.execute("UPDATE DocenteTest SET nome='" + oDocente.getNome() + "', cognome='" + oDocente.getCognome() + "' WHERE id =" + oDocente.getid());
             System.out.println("model.dao.Docente aggiornato");
         } catch (ClassNotFoundException | SQLException e) {
             System.err.println(e.getMessage());
             System.exit(0);
         }
     }
-
-
-
-
-
-
 
 
 }
