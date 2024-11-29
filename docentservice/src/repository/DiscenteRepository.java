@@ -16,8 +16,17 @@ public class DiscenteRepository {
         try {
             Connection c = DbConnection.openConnection();
             System.out.println("Connessione Riuscita");
-            Statement statement = c.createStatement();
-            statement.execute("INSERT INTO Discente VALUES ('" + oDiscente.getNome() + "','" + oDiscente.getCognome() + "','" + oDiscente.getMatricola() + "','" + oDiscente.getDataNascita() + "')");
+            String query = "INSERT INTO discente (nome,cognome,matricola,data_nascita) VALUES (?,?,?,?)";
+            PreparedStatement pstmt = c.prepareStatement(query);
+            pstmt.setString(1,oDiscente.getNome());
+            pstmt.setString(2,oDiscente.getCognome());
+            pstmt.setString(3, oDiscente.getMatricola());
+            pstmt.setDate(4,java.sql.Date.valueOf(oDiscente.getDataNascita()));
+            pstmt.executeUpdate();
+
+            System.out.println("Discente creato con successo");
+
+
 
         } catch (SQLException | ClassNotFoundException e) {
             System.err.println(e.getMessage());

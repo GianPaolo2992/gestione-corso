@@ -170,9 +170,11 @@ public class Main {
         String cognome = scanner.nextLine();
         System.out.println("inserisci matricola");
         String matricola = scanner.nextLine();
-        System.out.println("inserisci data di nascita yyyy-mm-dd");
+        System.out.println("inserisci data di nascita dd-mm-yyyy");
         String dataNascitaInput = scanner.nextLine();
-        LocalDate dataNascita = LocalDate.parse(dataNascitaInput, DateTimeFormatter.ISO_LOCAL_DATE);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+        LocalDate dataNascita = LocalDate.parse(dataNascitaInput, formatter);
 
         DiscenteServices oDiscenteServices = new DiscenteServices();
         oDiscenteServices.create(nome, cognome, matricola, dataNascita);
