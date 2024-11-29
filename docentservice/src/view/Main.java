@@ -1,5 +1,6 @@
 package view;
 
+import model.Corso;
 import model.Discente;
 import model.Docente;
 import service.CorsoService;
@@ -91,9 +92,9 @@ public class Main {
                 System.out.println("Classe Corso");
                 System.out.println("***Menu***");
                 System.out.println("1. Crea un nuovo corso");
-              /*  System.out.println("2. Aggiorna un discente");
-                System.out.println("3. Visualizza la lista di discenti");
-                System.out.println("4. Elimina un discente");*/
+                System.out.println("2. Aggiorna un corso");
+                System.out.println("3. Visualizza la lista di corsi");
+                  System.out.println("4. Elimina un corso");
                 System.out.println("9. Exit");
                 System.out.print("Inserisci la tua scelta: ");
 
@@ -102,15 +103,16 @@ public class Main {
                     case 1:
                         createCorso();
                         break;
-                    /*case 2:
-                        updateDiscente();
+                    case 2:
+                        updateCorso();
                         break;
                     case 3:
-                        readDiscente();
+                        readCorso();
                         break;
+
                     case 4:
-                        deleteDiscente();
-                        break;*/
+                        deleteCorso();
+                        break;
                     case 9:
                         System.out.println("Exiting");
                         break;
@@ -153,12 +155,16 @@ public class Main {
         String cognome = scanner.nextLine();
         System.out.println("inserisci matricola");
         String matricola = scanner.nextLine();
-        System.out.println("inserisci data di nascita yyyy-mm-dd");
-        String dataNascitaInput = scanner.nextLine();
-        LocalDate dataNascita = LocalDate.parse(dataNascitaInput, DateTimeFormatter.ISO_LOCAL_DATE);
+
+
+        System.out.println("inserisci la data di inizio del corso (formato: dd-MM-yyyy)");
+        String dataNascitaInput = scanner.nextLine(); // Specificare il formato della data
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+        LocalDate data_nascita = LocalDate.parse(dataNascitaInput, formatter);
 
         DiscenteServices oDiscenteServices = new DiscenteServices();
-        oDiscenteServices.update(id, nome, cognome, matricola, dataNascita);
+        oDiscenteServices.update(id, nome, cognome, matricola, data_nascita);
     }
 
     private static void createDiscente() {
@@ -214,6 +220,64 @@ public class Main {
 
         CorsoService oCorsoService = new CorsoService();
         oCorsoService.create(nome_corso, data_inizio, durata, docente);
+
+    }
+
+    public static void readCorso(){
+        System.out.println("ecco la lista dei corsi");
+        CorsoService oCorsoService = new CorsoService();
+        List<Corso> listaCorso = oCorsoService.readCorso();
+        int i = 0;
+        while(i<listaCorso.size()){
+            System.out.println(listaCorso.get(i).getid()+" "+
+                               listaCorso.get(i).getNomeCorso()+" "+
+                               listaCorso.get(i).getDataInizio()+" "+
+                               listaCorso.get(i).getDurata()+" "+
+                               listaCorso.get(i).getDocente().getNome()+" "+
+                               listaCorso.get(i).getDocente().getCognome());
+            i++;
+        }
+    }
+
+    private static void updateCorso() {
+        System.out.println("inserisci l'id del Corso da modificare:");
+        Scanner scanner = new Scanner(System.in);
+        int id = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("inserisci il nome del corso");
+        String nome_corso = scanner.nextLine();
+
+        System.out.println("inserisci la data di inizio del corso (formato: dd-MM-yyyy)");
+        String dataInizioInput = scanner.nextLine(); // Specificare il formato della data
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+        LocalDate data_inizio = LocalDate.parse(dataInizioInput, formatter);
+        System.out.println("inserisci Durata");
+        String durata = scanner.nextLine();
+        System.out.println("ecco la lista dei docenti: ");
+
+        DocenteService oDocenteService = new DocenteService();
+        List<Docente> listaDocenti = oDocenteService.readDocente();
+        int i = 0;
+        while (i < listaDocenti.size()) {
+            System.out.println(listaDocenti.get(i).getid() + " " + listaDocenti.get(i).getCognome() + " " + listaDocenti.get(i).getNome());
+            i++;
+        }
+
+        System.out.println("scegli uno dei docenti: ");
+        int id_docente = scanner.nextInt();
+        Docente docente = listaDocenti.get(id_docente - 2);
+
+        CorsoService oCorsoService = new CorsoService();
+        oCorsoService.updateCorso(id,nome_corso, data_inizio, durata, docente);
+    }
+
+    private static void deleteCorso(){
+        System.out.println("scegli un id per eliminare un corso ");
+        Scanner scanner = new Scanner(System.in);
+        int id = scanner.nextInt();
+        CorsoService oCorsoService = new CorsoService();
+        oCorsoService.deleteCorso(id);
 
     }
 

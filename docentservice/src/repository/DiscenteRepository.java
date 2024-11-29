@@ -2,7 +2,7 @@ package repository;
 
 import config.DbConnection;
 import model.Discente;
-import model.Docente;
+
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -44,6 +44,7 @@ public class DiscenteRepository {
 
             while (rs.next()) {
                 Discente oDiscente = new Discente();
+                oDiscente.setid(rs.getInt("id"));
                 oDiscente.setNome(rs.getString("nome"));
                 oDiscente.setCognome(rs.getString("cognome"));
                 oDiscente.setMatricola(rs.getString("matricola"));
@@ -78,8 +79,14 @@ public class DiscenteRepository {
         try {
             Connection c = DbConnection.openConnection();
             System.out.println("Connessione Riuscita");
-            Statement statement = c.createStatement();
-            statement.execute("UPDATE discente SET nome = '" + oDiscente.getNome() + "',cognome= '" + oDiscente.getCognome() + "',matricola= '" + oDiscente.getMatricola() + "',data_nascita= '" + oDiscente.getDataNascita() + "' WHERE id = '" + oDiscente.getid() + "'");
+             String query= "UPDATE discente SET nome = ?,cognome= ?,matricola= ?,data_nascita= ? WHERE id = ?";
+            PreparedStatement pstmt = c.prepareStatement(query);
+            pstmt.setString(1,oDiscente.getNome());
+            pstmt.setString(2,oDiscente.getCognome());
+            pstmt.setString(3,oDiscente.getMatricola());
+            pstmt.setDate(4,java.sql.Date.valueOf(oDiscente.getDataNascita()));
+            pstmt.setInt(5,oDiscente.getid());
+            pstmt.executeUpdate();
             System.out.println("model.dao.Discente modificato");
         } catch (SQLException | ClassNotFoundException e) {
             System.err.println(e.getMessage());

@@ -1,6 +1,6 @@
 package service;
 
-import com.sun.istack.internal.NotNull;
+
 import model.Discente;
 
 import repository.DiscenteRepository;
@@ -35,11 +35,12 @@ public class DiscenteServices {
 
     public void update(int id, String nome, String cognome, String matricola, LocalDate data_nascita) {
         Discente oDiscente = new Discente();
+        oDiscente.setid(id);
         oDiscente.setNome(nome);
         oDiscente.setCognome(cognome);
         oDiscente.setMatricola(matricola);
         oDiscente.setDataNascita(data_nascita);
-        oDiscente.setid(id);
+
         discenteRepository.updateDiscente(oDiscente);
     }
 
