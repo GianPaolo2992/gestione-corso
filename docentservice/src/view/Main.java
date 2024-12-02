@@ -3,11 +3,13 @@ package view;
 
 import java.util.*;
 
-import static Controller.DiscenteController.*  ;
 
-import static Controller.CorsoController.*;
 
-import static Controller.DocenteController.*;
+import  Controller.CorsoController;
+
+import Controller.DiscenteController;
+import Controller.DocenteController;
+
 
 
 
@@ -39,18 +41,19 @@ public class Main {
                 System.out.print("Inserisci la tua scelta: ");
 
                 choice = scanner.nextInt();
+                DocenteController docenteController = new DocenteController();
                 switch (choice) {
                     case 1:
-                        createDocente();
+                        docenteController.createDocente();
                         break;
                     case 2:
-                        updateDocente();
+                        docenteController.updateDocente();
                         break;
                     case 3:
-                        readDocente();
+                        docenteController.readDocente();
                         break;
                     case 4:
-                        deleteDocente();
+                        docenteController.deleteDocente();
                         break;
                     case 9:
                         System.out.println("Exiting");
@@ -69,18 +72,19 @@ public class Main {
                 System.out.print("Inserisci la tua scelta: ");
 
                 choice = scanner.nextInt();
+                DiscenteController discenteController =new DiscenteController();
                 switch (choice) {
                     case 1:
-                        createDiscente();
+                        discenteController.createDiscente();
                         break;
                     case 2:
-                        updateDiscente();
+                        discenteController.updateDiscente();
                         break;
                     case 3:
-                        readDiscente();
+                        discenteController.readDiscente();
                         break;
                     case 4:
-                        deleteDiscente();
+                        discenteController.deleteDiscente();
                         break;
                     case 9:
                         System.out.println("Exiting");
@@ -99,19 +103,20 @@ public class Main {
                 System.out.print("Inserisci la tua scelta: ");
 
                 choice = scanner.nextInt();
+                CorsoController corsoController = new CorsoController();
                 switch (choice) {
                     case 1:
-                        createCorso();
+                        corsoController. createCorso();
                         break;
                     case 2:
-                        updateCorso();
+                        corsoController.updateCorso();
                         break;
                     case 3:
-                        readCorso();
+                        corsoController.readCorso();
                         break;
 
                     case 4:
-                        deleteCorso();
+                        corsoController.deleteCorso();
                         break;
                     case 9:
                         System.out.println("Exiting");
@@ -130,9 +135,11 @@ public class Main {
                 System.out.print("Inserisci la tua scelta: ");
 
                 choice = scanner.nextInt();
+                DiscenteController discenteController =new DiscenteController();
+
                 switch (choice) {
                     case 1:
-                        associateLearnerToCourse() ;
+                        discenteController.associateLearnerToCourse() ;
                         break;
                     /*case 2:
                         updateCorso();

@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class DiscenteController {
-    public static void deleteDiscente() {
+    public  void deleteDiscente() {
         System.out.println("Elimina il discente con id: ");
         Scanner scanner = new Scanner(System.in);
         int id = scanner.nextInt();
@@ -20,7 +20,7 @@ public class DiscenteController {
         oDiscenteService.delete(id);
     }
 
-    public static void readDiscente() {
+    public  void readDiscente() {
         System.out.println("ecco la lista dei discenti: ");
         DiscenteServices oDiscenteService = new DiscenteServices();
         List<Discente> listaDiscenti = oDiscenteService.read();
@@ -31,7 +31,7 @@ public class DiscenteController {
         }
     }
 
-    public static void updateDiscente() {
+    public  void updateDiscente() {
         System.out.println("inserisci l'id del discente da modificare:");
         Scanner scanner = new Scanner(System.in);
         int id = scanner.nextInt();
@@ -54,7 +54,7 @@ public class DiscenteController {
         oDiscenteServices.update(id, nome, cognome, matricola, data_nascita);
     }
 
-    public static void createDiscente() {
+    public  void createDiscente() {
 
         System.out.println("inserisci nome");
         Scanner scanner = new Scanner(System.in);
@@ -94,7 +94,7 @@ public class DiscenteController {
         oDiscenteServices.create(nome, cognome, matricola, dataNascita/*,corsiAssociati*/);
     }
 
-    public static void associateLearnerToCourse() {
+    public  void associateLearnerToCourse() {
         Scanner scanner = new Scanner(System.in);
 
         // Visualizzazione della lista dei discenti disponibili

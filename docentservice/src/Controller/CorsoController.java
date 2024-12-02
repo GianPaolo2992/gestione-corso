@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CorsoController {
-    public static void createCorso() {
+    public  void createCorso() {
 
         System.out.println("inserisci il nome del corso");
         Scanner scanner = new Scanner(System.in);
@@ -69,7 +69,7 @@ public class CorsoController {
 
     }
 
-    public static void readCorso(){
+    public  void readCorso(){
         System.out.println("ecco la lista dei corsi");
         CorsoService oCorsoService = new CorsoService();
         List<Corso> listaCorso = oCorsoService.readCorso();
@@ -85,7 +85,7 @@ public class CorsoController {
         }
     }
 
-    public static void updateCorso() {
+    public  void updateCorso() {
         System.out.println("inserisci l'id del Corso da modificare:");
         Scanner scanner = new Scanner(System.in);
         int id = scanner.nextInt();
@@ -118,7 +118,7 @@ public class CorsoController {
         oCorsoService.updateCorso(id,nome_corso, data_inizio, durata, docente);
     }
 
-    public static void deleteCorso(){
+    public  void deleteCorso(){
         System.out.println("scegli un id per eliminare un corso ");
         Scanner scanner = new Scanner(System.in);
         int id = scanner.nextInt();

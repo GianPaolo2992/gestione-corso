@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class DocenteController {
 
 
-    public static void createDocente() {
+    public  void createDocente() {
         System.out.println("inserisci nome: ");
         Scanner scanner = new Scanner(System.in);
         String nome = scanner.next();
@@ -20,7 +20,7 @@ public class DocenteController {
 
     }
 
-    public static void deleteDocente() {
+    public  void deleteDocente() {
         System.out.println("Elimina il docente con id: ");
         Scanner scanner = new Scanner(System.in);
         int id = scanner.nextInt();
@@ -29,7 +29,7 @@ public class DocenteController {
 
     }
 
-    public static void updateDocente() {
+    public  void updateDocente() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("inserisci l'id del docente da modificare:");
         int id = scanner.nextInt();
@@ -42,7 +42,7 @@ public class DocenteController {
 
     }
 
-    public static void readDocente() {
+    public  void readDocente() {
         System.out.println("ecco la lista dei docenti: ");
         DocenteService oDocenteService = new DocenteService();
         List<Docente> listaDocenti = oDocenteService.readDocente();
