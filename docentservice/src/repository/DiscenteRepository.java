@@ -1,5 +1,6 @@
 package repository;
 
+import com.sun.istack.internal.NotNull;
 import config.DbConnection;
 import model.Corso;
 import model.Discente;
@@ -13,7 +14,7 @@ import java.time.LocalDate;
 
 public class DiscenteRepository {
 
-    public void createDiscente(Discente oDiscente) {
+    public void createDiscente( Discente oDiscente) {
         try {
             Connection c = DbConnection.openConnection();
             System.out.println("Connessione Riuscita");
@@ -60,7 +61,7 @@ public class DiscenteRepository {
             pstmt.executeUpdate();
             pstmt.close();
         }catch (SQLException | ClassNotFoundException e){
-            System.err.println(e);
+            System.err.println(e.getMessage());
             System.exit(0);
         }
     }

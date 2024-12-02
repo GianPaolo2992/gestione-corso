@@ -67,12 +67,15 @@ public class CorsoRepository {
             ResultSet rs = stmt.executeQuery("SELECT c.*, d.nome, d.cognome, d.id FROM corso c JOIN docentetest d ON c.id_docente = d.id ORDER BY c.id asc");//Un oggetto ResultSet (java.sql.ResultSet) è un contenitore per i risultati restituiti da una query SQL. Contiene i dati restituiti dal database e permette di navigare attraverso i risultati.
             while (rs.next()) {
                 Corso oCorso = new Corso();
+
                 oCorso.setid(rs.getInt("id"));
                 oCorso.setNomeCorso(rs.getString("nome_corso"));
                 java.sql.Date sqlDate = rs.getDate("data_inizio");
                 LocalDate localDate = (sqlDate != null) ? sqlDate.toLocalDate() : null;
                 oCorso.setDatainizio(localDate);
                 oCorso.setDurata(rs.getString("durata"));
+
+
                 Docente docente = new Docente();
                 docente.setid(rs.getInt("id_docente"));
                 docente.setNome(rs.getString("nome"));
