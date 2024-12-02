@@ -1,6 +1,7 @@
 package repository;
 
 import config.DbConnection;
+import model.Corso;
 import model.Discente;
 
 
@@ -23,13 +24,43 @@ public class DiscenteRepository {
             pstmt.setString(3, oDiscente.getMatricola());
             pstmt.setDate(4,java.sql.Date.valueOf(oDiscente.getDataNascita()));
             pstmt.executeUpdate();
-
             System.out.println("Discente creato con successo");
+           /* ResultSet rs = pstmt.getGeneratedKeys();
 
+            if (rs.next()){
+                int id_discente = rs.getInt(2);
+                oDiscente.setid(id_discente);
 
+                for (Corso corso : oDiscente.getListaCorsi()){
+                    String jQuery = "INSERT INTO rel_corso_discenti (id_corso,id_discente) VALUES(?,?)";
 
+                    PreparedStatement jpstmt = c.prepareStatement(jQuery);
+                    jpstmt.setInt(1,corso.getid());
+                    jpstmt.setInt(2,id_discente);
+                    jpstmt.executeUpdate();
+                    jpstmt.close();
+                }
+
+            }*/
         } catch (SQLException | ClassNotFoundException e) {
             System.err.println(e.getMessage());
+            System.exit(0);
+        }
+    }
+
+    public void associateLearnerToCourse(int oCorso, int oDiscente){
+
+        try{
+            Connection c = DbConnection.openConnection();
+            System.out.println("Connessione Riuscita");
+            String query = "INSERT INTO rel_corso_discenti(id_corso,id_discente) VALUES(?,?)";
+            PreparedStatement pstmt = c.prepareStatement(query);
+            pstmt.setInt(1,oCorso);
+            pstmt.setInt(2,oDiscente);
+            pstmt.executeUpdate();
+            pstmt.close();
+        }catch (SQLException | ClassNotFoundException e){
+            System.err.println(e);
             System.exit(0);
         }
     }

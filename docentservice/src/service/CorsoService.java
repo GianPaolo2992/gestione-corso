@@ -1,6 +1,7 @@
 package service;
 
 import model.Corso;
+import model.Discente;
 import model.Docente;
 import repository.CorsoRepository;
 
@@ -13,13 +14,14 @@ public class CorsoService {
     private CorsoRepository corsoRepository = new CorsoRepository();
 
 
-    public void create(String nome_corso, LocalDate data_inizio, String durata, Docente docente) {
+    public void create(String nome_corso, LocalDate data_inizio, String durata, Docente docente /*,List<Discente> discentiAssociati*/) {
         Corso oCorso = new Corso();
 
         oCorso.setNomeCorso(nome_corso);
         oCorso.setDatainizio(data_inizio);
         oCorso.setDurata(durata);
         oCorso.setDocente(docente);
+        //oCorso.setListaDiscenti(discentiAssociati);
         corsoRepository.createCorso(oCorso);
     }
 
@@ -35,6 +37,7 @@ public class CorsoService {
         oCorso.setDatainizio(data_inizio);
         oCorso.setDurata(durata);
         oCorso.setDocente(docente);
+
         corsoRepository.updateCorso(oCorso);
     }
 

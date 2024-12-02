@@ -1,6 +1,8 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Discente {
 
@@ -9,6 +11,11 @@ public class Discente {
     private String matricola;
     private LocalDate data_nascita;
     private int id;
+    private List<Corso> listaCorsi;
+
+    public Discente(){
+        this.listaCorsi = new ArrayList<>();
+    }
 
     public void setNome(String nome) {
         this.nome = nome;
@@ -48,6 +55,21 @@ public class Discente {
 
     public int getid() {
         return id;
+    }
+
+    public void setListaCorsi(List<Corso> listaCorsi){
+        this.listaCorsi = listaCorsi;
+    }
+
+    public List<Corso> getListaCorsi(){
+        return listaCorsi;
+    }
+
+    public void aggiungiCorso (Corso corso){
+        if (!listaCorsi.contains(corso)){
+            listaCorsi.add(corso);
+            corso.aggiungiDiscente(this);
+        }
     }
 
 

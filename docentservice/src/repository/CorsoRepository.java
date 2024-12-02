@@ -3,6 +3,7 @@ package repository;
 import config.DbConnection;
 import model.Corso;
 
+import model.Discente;
 import model.Docente;
 
 
@@ -11,6 +12,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class CorsoRepository {
+
+
+
 
 
     public void createCorso(Corso oCorso) {
@@ -26,6 +30,23 @@ public class CorsoRepository {
             pstmt.setInt(4, oCorso.getDocente().getid());
             pstmt.executeUpdate();
             System.out.println("Corso creato con successo");
+
+         /*   ResultSet rs = pstmt.getGeneratedKeys();
+
+            if (rs.next()){
+                int id_corso = rs.getInt(1);
+                oCorso.setid(id_corso);
+
+                for(Discente discente : oCorso.getListaDiscenti()){
+                    String JQuery =  " INSERT INTO rel_corso_discenti(id_corso,id_discente) VALUES(?,?)";
+                    PreparedStatement jpstmt = c.prepareStatement(JQuery);
+                    jpstmt.setInt(1,id_corso);
+                    jpstmt.setInt(2,discente.getid());
+                    jpstmt.executeUpdate();
+                    jpstmt.close();
+                }
+            }*/
+
 
         } catch (SQLException | ClassNotFoundException e) {
             System.err.println(e.getMessage());

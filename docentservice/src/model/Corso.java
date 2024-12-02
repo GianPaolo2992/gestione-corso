@@ -1,6 +1,8 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /*crea nuovo corso:
 1. far aggiungere all'utente i campi descrittivi di corso
@@ -16,6 +18,11 @@ public class Corso {
     private LocalDate data_inizio;
     private String durata;
     private Docente docente;
+    private List<Discente> listaDiscenti;
+
+    public Corso(){
+        this.listaDiscenti = new ArrayList<>();
+    }
 
     public void setid(int id) {
         this.id = id;
@@ -55,6 +62,21 @@ public class Corso {
 
     public Docente getDocente() {
         return docente;
+    }
+
+    public void setListaDiscenti(List<Discente> listaDiscenti){
+        this.listaDiscenti = listaDiscenti;
+    }
+
+    public List<Discente> getListaDiscenti(){
+        return listaDiscenti;
+    }
+
+    public void aggiungiDiscente(Discente discente){
+        if (!listaDiscenti.contains(discente)){
+            listaDiscenti.add(discente);
+            discente.aggiungiCorso(this);
+        }
     }
 
 

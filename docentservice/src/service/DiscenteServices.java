@@ -1,6 +1,7 @@
 package service;
 
 
+import model.Corso;
 import model.Discente;
 
 import repository.DiscenteRepository;
@@ -14,12 +15,13 @@ public class DiscenteServices {
 
     private DiscenteRepository discenteRepository = new DiscenteRepository();
 
-    public void create(String nome, String cognome, String matricola, LocalDate data_nascita) {
+    public void create(String nome, String cognome, String matricola, LocalDate data_nascita /*, List<Corso> corsiAssociati*/) {
         Discente oDiscente = new Discente();
         oDiscente.setCognome(cognome);
         oDiscente.setNome(nome);
         oDiscente.setMatricola(matricola);
         oDiscente.setDataNascita(data_nascita);
+       // oDiscente.setListaCorsi(corsiAssociati);
         discenteRepository.createDiscente(oDiscente);
     }
 
@@ -44,5 +46,8 @@ public class DiscenteServices {
         discenteRepository.updateDiscente(oDiscente);
     }
 
+    public void associateLearnerToCourse(int oCorso, Discente oDiscente){
+        discenteRepository.associateLearnerToCourse(oCorso, oDiscente.getid());
+    }
 
 }
